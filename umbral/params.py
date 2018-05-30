@@ -11,6 +11,7 @@ class UmbralParameters(object):
         self.curve = curve
         curve_nid = backend._elliptic_curve_to_nid(curve)
 
+        self.group = openssl._get_ec_group_by_curve_nid(curve_nid)
         self.g = Point.get_generator_from_curve(self.curve)
 
         self.order = openssl._get_ec_order_by_curve_nid(curve_nid)
