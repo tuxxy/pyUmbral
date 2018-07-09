@@ -149,10 +149,10 @@ jobs:
       - restore_cache:
           key: v2-deps-{{ .Environment.CIRCLE_WORKFLOW_ID }}-{{ checksum "Pipfile.lock" }}-py36
       - run:
-          name: Run Mypy Static Type Checks
+          name: Run Mypy Static Type Checks (Always Succeed)
           command: |
               pipenv install --dev --skip-lock lxml
-              pipenv run mypy --xslt-html-report ./mypy_report ./umbral --config-file=mypy.ini
+              pipenv run mypy --xslt-html-report ./mypy_report ./umbral --config-file=mypy.ini || true
       - store_artifacts:
           path: ./mypy_report
 
